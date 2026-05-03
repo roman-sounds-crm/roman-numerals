@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { RomanNumeralsEngine, EngineState } from "./core/engine";
+import { RomanNumeralsEngine, EngineState } from "@/core/engine";
 
 const BRAND_BLACK = "#09080a";
 const BRAND_GOLD = "#c8a45a";
