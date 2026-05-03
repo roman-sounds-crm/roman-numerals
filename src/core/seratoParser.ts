@@ -5,7 +5,6 @@
  */
 
 import * as fs from "fs";
-import * as path from "path";
 
 export interface DeckState {
   deck: "left" | "right";
