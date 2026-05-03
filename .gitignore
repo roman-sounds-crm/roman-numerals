@@ -1,0 +1,31 @@
+node_modules/
+dist/
+build/
+out/
+.next/
+
+# Electron
+electron-builder-effective-config.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Serato (don't track local library cache)
+.serato_cache/
+*.crate.tmp
+
+# Build
+*.tsbuildinfo

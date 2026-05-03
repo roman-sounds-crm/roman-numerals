@@ -1,0 +1,62 @@
+{
+  "name": "roman-numerals",
+  "version": "2.0.0",
+  "description": "Serato DJ companion: harmonic suggestion engine + real-time dual-deck UI",
+  "author": "Randy Delgado <randy@romansounds.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/randyromanmusic/roman-numerals",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/randyromanmusic/roman-numerals.git"
+  },
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:electron": "electron .",
+    "build": "tsc && vite build",
+    "build:electron": "tsc && vite build && electron-builder",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "music-metadata": "^8.0.0",
+    "xml2js": "^0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.0"
+  },
+  "build": {
+    "appId": "com.romansounds.numerals",
+    "productName": "Roman Numerals",
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.music"
+    },
+    "win": {
+      "target": ["nsis", "portable"],
+      "certificateFile": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
