@@ -56,7 +56,7 @@ export class LibraryLoader {
    * Serato .crate = XML file list.
    * Usually in ~/.serato/Serato DJ/Crates/
    */
-  private async loadCrates(drive_path: string): Promise<Crate[]> {
+  private async loadCrates(): Promise<Crate[]> {
     const crates: Crate[] = [];
     const serato_crate_path = path.join(
       process.env.HOME || "~",
@@ -117,7 +117,7 @@ export class LibraryLoader {
         }
 
         // Parse metadata
-        const metadata = await mm.parseFile(full_path);
+        const metadata = await (mm as any).parseFile(full_path);
         const { common, format } = metadata;
 
         // Infer BPM (from ID3 or guess from format)
@@ -148,7 +148,7 @@ export class LibraryLoader {
         };
 
         tracks.push(track);
-        this.track_cache.set(track.id, track);
+        this.track_cache.set(track.id, track as unknown as Record<string, unknown>);
       } catch (err) {
         console.error(`Failed to load track metadata:`, err);
       }
@@ -163,8 +163,8 @@ export class LibraryLoader {
    * Fallback: guess from genre.
    */
   private inferKey(
-    common: mm.ICommonTagsResult,
-    format: mm.IFormat
+    common: Record<string, unknown>,
+    _format: Record<string, unknown>
   ): string {
     // Check custom frames (music-metadata stores these)
     const keys_frame = (common as Record<string, unknown>)[
@@ -235,7 +235,8 @@ export class LibraryLoader {
    * Get cached track by ID.
    */
   getTrack(id: string): Track | null {
-    return (this.track_cache.get(id) as Track) || null;
+    const cached = this.track_cache.get(id);
+    return cached ? (cached as unknown as Track) : null;
   }
 
   /**
@@ -260,7 +261,7 @@ export class LibraryLoader {
 
 interface Crate {
   name: string;
-  tracks: string[];
+  const crates = await this.loadCrates();
 }
 
 interface Track {
